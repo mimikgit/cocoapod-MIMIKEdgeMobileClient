@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.name         = "MIMIKEdgeMobileClient"
   s.version      = "3.0.0"
-  s.summary      = "mimik edgeSDK allows you to host microservices on practically any computing device to work seamlessly with your backend on private or public cloud."
+  s.summary      = "mimik edgeSDK allows you to host microservices on practically any computing device."
 
   s.description  = <<-DESC
   mimik edgeSDK allows you to host microservices on practically any computing device to work seamlessly with your backend on private or public cloud.
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "CUSTOM", :file => "LICENSE" }
 
   s.author       = { "mimik" => "apps@mimik.com" }
-  s.source       = { :git => "https://github.com/mimikgit/cocoapod-edge-wrapper.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/mimikgit/cocoapod-MIMIKEdgeMobileClient.git", :tag => "#{s.version}" }
 
   s.vendored_frameworks = "MIMIKEdgeMobileClient.framework", "edge.framework"
 
