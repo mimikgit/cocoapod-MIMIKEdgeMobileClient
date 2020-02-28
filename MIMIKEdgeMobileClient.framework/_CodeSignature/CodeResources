@@ -8,13 +8,9 @@
 		<data>
 		I3CYu5X+E8frykiefarKrdgDefU=
 		</data>
-		<key>Headers/EdgeService-swift.h</key>
-		<data>
-		rS1b+FXYPDzHOn8WGCD6yomnoYY=
-		</data>
 		<key>Headers/MIMIKEdgeMobileClient-Swift.h</key>
 		<data>
-		foWGZR5iW+9ZrpSgi0z3shNJOjU=
+		+HO8y9Mq9co3skALtxU4m+ozcGM=
 		</data>
 		<key>Headers/MIMIKEdgeMobileClient.h</key>
 		<data>
@@ -22,11 +18,11 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		9r84If81hTv6JOnlrKhVNquAO1A=
+		cRDl/7PkKg1O//de/x5WTD6Cupk=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		Rx8dHqjLNihRtT4/NUVbKZ9+tJU=
+		LdtWXpRPZjttV5sBvmyFVRmwFDg=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
@@ -34,7 +30,7 @@
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		Rx8dHqjLNihRtT4/NUVbKZ9+tJU=
+		LdtWXpRPZjttV5sBvmyFVRmwFDg=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftmodule</key>
 		<data>
@@ -43,6 +39,10 @@
 		<key>Modules/module.modulemap</key>
 		<data>
 		94gh+l3AbVX7yy3NABj6PNniAvM=
+		</data>
+		<key>PrivateHeaders/EdgeService-swift.h</key>
+		<data>
+		rS1b+FXYPDzHOn8WGCD6yomnoYY=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -54,18 +54,11 @@
 			+FeqvaKXJ26ZuK1qDUUjGrKQcfOGSq1LXChiB+Cc+3A=
 			</data>
 		</dict>
-		<key>Headers/EdgeService-swift.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			o0ZkuAuoG8VTlf0XA81YSpcF2x1tUeEmYhss6jlB9bU=
-			</data>
-		</dict>
 		<key>Headers/MIMIKEdgeMobileClient-Swift.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Lm70BRbCgKt0bj0Wp7GbGLKKOQXRb/+UBU7k6oelWjs=
+			D4hWFl2YjeFvHvuQ0shb/Mwqs6Pclgbq35WhQvMCnaE=
 			</data>
 		</dict>
 		<key>Headers/MIMIKEdgeMobileClient.h</key>
@@ -79,7 +72,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qBVrJ7cz473vvJYA24TvEMjZ5lGVZKhrJDKpvXXg6aY=
+			Alnf8D6birXdA3McJHy6Kmb45uymGQ6CqcU5GPAEysg=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftmodule</key>
@@ -93,7 +86,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qBVrJ7cz473vvJYA24TvEMjZ5lGVZKhrJDKpvXXg6aY=
+			Alnf8D6birXdA3McJHy6Kmb45uymGQ6CqcU5GPAEysg=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftmodule</key>
@@ -108,6 +101,13 @@
 			<key>hash2</key>
 			<data>
 			W9I2IhRWHZZLfvQDjQyJj97BmMtVFgRm8xrfHzhVg+M=
+			</data>
+		</dict>
+		<key>PrivateHeaders/EdgeService-swift.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			o0ZkuAuoG8VTlf0XA81YSpcF2x1tUeEmYhss6jlB9bU=
 			</data>
 		</dict>
 	</dict>

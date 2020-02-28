@@ -362,7 +362,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient19MIMIKEdgeInfoResult")
 @class MIMIKGenericContentResult;
 enum MIMIKLogLevel : NSInteger;
 
-/// MIMIKEdgeMobileClient wrapper can be used to simplify the following mimik edge operations:
+/// MIMIKEdgeMobileClient wrapper can be used to simplify the following mimik edgeSDK operations:
 /// <ul>
 ///   <li>
 ///     startEdge (Platform startup with a completion block)
