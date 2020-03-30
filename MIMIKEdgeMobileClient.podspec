@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MIMIKEdgeMobileClient"
-  s.version      = "3.0.4"
+  s.version      = "3.1.0"
   s.summary      = "mimik edgeSDK allows you to host microservices on practically any computing device."
 
   s.description  = <<-DESC
@@ -24,13 +24,13 @@ Pod::Spec.new do |s|
 
   s.vendored_frameworks = "MIMIKEdgeMobileClient.framework", "edge.framework"
 
-  s.dependency 'Alamofire', '~> 5.0.2'
+  s.dependency 'Alamofire', '~> 5.0.5'
   s.dependency 'KeychainSwift', '~> 19.0.0'
   s.dependency 'Starscream', '~> 3.1.1'
   s.dependency 'SwiftyJSON', '~> 5.0.0'
   s.dependency 'AppAuth', '~> 1.3.0'
-  s.dependency 'JWTDecode', '~> 2.4.0'
+  s.dependency 'JWTDecode', '~> 2.4.1'
 
   s.platform = 'ios', '12.0'
-  s.swift_version = '5.1'
+  s.swift_version = '5.2'
 end
