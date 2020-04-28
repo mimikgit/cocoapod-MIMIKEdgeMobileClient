@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/MIMIKEdgeMobileClient-Swift.h</key>
 		<data>
-		qOGOUYae4Iy42hTKSFl6mpszgtQ=
+		iFKqyzlJtJXpWc4gzgSQOk8rahw=
 		</data>
 		<key>Headers/MIMIKEdgeMobileClient.h</key>
 		<data>
@@ -18,23 +18,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		7QA6n/Ab5kCJPJrWKBW1vndhWSY=
+		tMwf2SaQIqq6sJg3X6ibL6NFeCA=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		340e62hQyr/cZMrIvIlMOCqYU7k=
+		Mj1t466bmB1puucc2CP5U7nPGRg=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		a+6tJ9MKi1dJLcTCJlDtYsoVk6c=
+		D67+gbgzNr4dTnG90zNKmImZC/Q=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		340e62hQyr/cZMrIvIlMOCqYU7k=
+		Mj1t466bmB1puucc2CP5U7nPGRg=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		a+6tJ9MKi1dJLcTCJlDtYsoVk6c=
+		D67+gbgzNr4dTnG90zNKmImZC/Q=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -58,7 +58,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1NZdbQNEC7kbuUtm6q/k3hXJuTW4OYdIWZfeFNpt9KY=
+			C4tmGoP41Yaga/yXZGo6XvdmZIVrpHNewlM09Up6ShE=
 			</data>
 		</dict>
 		<key>Headers/MIMIKEdgeMobileClient.h</key>
@@ -72,28 +72,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EIf/633sN4X7KeE9JTEMe/hfosSbphCqlXdlp5Gemoo=
+			8c8o41lpXVDi6WuRu1xt5TgRuyNJdOSHjYEO2UB7Jdc=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WhW14DV3TPC/LLrxRMoQzUnSSw6JEpmfkGB+sLN/YoU=
+			vqrhsNQwUJcLw0Do2QzWjBYu4waEFSRto7EenxtfQGQ=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			EIf/633sN4X7KeE9JTEMe/hfosSbphCqlXdlp5Gemoo=
+			8c8o41lpXVDi6WuRu1xt5TgRuyNJdOSHjYEO2UB7Jdc=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WhW14DV3TPC/LLrxRMoQzUnSSw6JEpmfkGB+sLN/YoU=
+			vqrhsNQwUJcLw0Do2QzWjBYu4waEFSRto7EenxtfQGQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

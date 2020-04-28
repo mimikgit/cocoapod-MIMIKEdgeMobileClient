@@ -9,11 +9,11 @@
 Pod::Spec.new do |s|
 
   s.name         = "MIMIKEdgeMobileClient"
-  s.version      = "3.1.0"
-  s.summary      = "mimik edgeSDK allows you to host microservices on practically any computing device."
+  s.version      = "4.0.0"
+  s.summary      = "Enable direct app to app communication."
 
   s.description  = <<-DESC
-  mimik edgeSDK allows you to host microservices on practically any computing device to work seamlessly with your backend on private or public cloud.
+  mimik edgeSDK - Simplify software deployment and maintenance of your enterprise and consumer frontend apps. Enable seamless microservice to microservice communication.
   DESC
 
   s.homepage     = "https://github.com/mimikgit/edgeSDK"
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 
   s.vendored_frameworks = "MIMIKEdgeMobileClient.framework", "edge.framework"
 
-  s.dependency 'Alamofire', '~> 5.0.5'
+  s.dependency 'Alamofire', '~> 5.1.0'
   s.dependency 'KeychainSwift', '~> 19.0.0'
   s.dependency 'Starscream', '~> 3.1.1'
   s.dependency 'SwiftyJSON', '~> 5.0.0'
