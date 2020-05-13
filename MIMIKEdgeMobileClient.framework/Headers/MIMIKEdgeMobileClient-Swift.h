@@ -207,7 +207,24 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 @class NSCoder;
 
-/// Authorization request configuration object.
+/// Assessment server request configuration object.
+/// <ul>
+///   <li>
+///     assessmentRootUrl: Custom profile  server URL.
+///   </li>
+/// </ul>
+SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKAssessmentConfig")
+@interface MIMIKAssessmentConfig : NSObject <NSCoding>
+- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
+- (nonnull instancetype)initWithAssessmentRootUrl:(NSURL * _Nonnull)assessmentRootUrl OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, copy) NSURL * _Nonnull assessmentRootUrl;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Platform authorization request configuration object.
 /// <ul>
 ///   <li>
 ///     clientId: Client application identifier. Generated for the developer at the developer portal during application registration.
@@ -231,6 +248,35 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient15MIMIKAuthConfig")
 @property (nonatomic, copy) NSURL * _Nonnull redirectUrl;
 @property (nonatomic, copy) NSArray<NSString *> * _Nullable additionalScopes;
 @property (nonatomic, copy) NSURL * _Nullable authorizationRootUrl;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Application authorization request configuration object.
+/// <ul>
+///   <li>
+///     clientId: Client application identifier. Generated for the developer at the developer portal during application registration.
+///   </li>
+///   <li>
+///     redirectUrl: Client application redirect URL. Specified by the developer at the developer portal during application registration.
+///   </li>
+///   <li>
+///     additionalScopes: Optional additional scopes for the authorization request. A default set is included automatically.
+///   </li>
+///   <li>
+///     authorizationRootUrl: Application authorization server URL.
+///   </li>
+/// </ul>
+SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient18MIMIKAuthConfigApp")
+@interface MIMIKAuthConfigApp : NSObject <NSCoding>
+- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
+- (nonnull instancetype)initWithClientId:(NSString * _Nonnull)clientId redirectUrl:(NSURL * _Nonnull)redirectUrl additionalScopes:(NSArray<NSString *> * _Nullable)additionalScopes authorizationRootUrl:(NSURL * _Nonnull)authorizationRootUrl OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, copy) NSString * _Nonnull clientId;
+@property (nonatomic, copy) NSURL * _Nonnull redirectUrl;
+@property (nonatomic, copy) NSArray<NSString *> * _Nullable additionalScopes;
+@property (nonatomic, copy) NSURL * _Nonnull authorizationRootUrl;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -368,43 +414,31 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient19MIMIKEdgeInfoResult")
 enum MIMIKLogLevel : NSInteger;
 enum MIMIKEdgeMobileClientBackend : NSInteger;
 
-/// MIMIKEdgeMobileClient wrapper can be used to simplify the following mimik edgeSDK operations:
+/// MIMIKEdgeMobileClient library can help you interact with the following mimik services:
 /// <ul>
 ///   <li>
-///     startEdge (Platform startup with a completion block)
+///     edge cloud controls
 ///   </li>
 ///   <li>
-///     stopEdge (Platform shutdown with a completion block)
+///     identity (platform and application)
 ///   </li>
 ///   <li>
-///     authorize (Platform authorization with a completion block; provides platform acess token)
+///     profile
 ///   </li>
 ///   <li>
-///     unauthorize (Platform unauthorization with a completion block; resets platform content)
+///     finance
 ///   </li>
 ///   <li>
-///     deployMicroservice (Microservice deployment with a completion block; platform access token is required)
+///     assessment
 ///   </li>
 ///   <li>
-///     undeployMicroservice (Microservice undeployment with a completion block; platform access token is required)
+///     microservice deployment
 ///   </li>
 ///   <li>
-///     getDeployedImages (Lists currently deployed images in a completion block)
+///     logs
 ///   </li>
 ///   <li>
-///     getDeployedContainers (Lists currently deployed containers in a completion block)
-///   </li>
-///   <li>
-///     getInfo (Platform instance information)
-///   </li>
-///   <li>
-///     setLoggingLevelTo (Configures platform log output. Unified logging system is used and the messages are tagged with [mimik] [module-name] and then [info] [error] [fault] [debug].
-///   </li>
-///   <li>
-///     edgeServiceLink (Platform instance service link, for your microservice configuration)
-///   </li>
-///   <li>
-///     edgeWebSocketServiceLink (Platform instance websocket link, for your microservice configuration)
+///     custom configuration
 ///   </li>
 ///   <li>
 ///   </li>
@@ -455,7 +489,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with an authorization state, including the platform access token.
 ///
 - (void)authorizeWithAuthConfig:(MIMIKAuthConfig * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
-/// Starts a mimik platform authentication session in a view controller with a completion block containing the authorization state. Platform content will be erased.
+/// Starts a mimik platform (un)authentication session in a view controller with a completion block containing the authorization state. Platform content will be erased.
 /// warning:
 /// Platform content will be erased.
 /// \param authConfig Configuration for the authentication session.
@@ -470,10 +504,14 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// Forward the authorization callbacks here for processing.
 /// \param url Callback Url.
 ///
+/// \param appAuthConfig Application authorization config.
+///
+/// \param platformAuthConfig Platform authorization config.
+///
 /// \param viewController View controller to be used to present the system provided authentication session controller.
 ///
-- (void)handleExternalAuthorizationCallbackWithUrl:(NSURL * _Nonnull)url viewController:(UIViewController * _Nullable)viewController;
-/// Deploys a microservice; platform access token is required.
+- (void)handleExternalAuthorizationCallbackWithUrl:(NSURL * _Nonnull)url appAuthConfig:(MIMIKAuthConfigApp * _Nonnull)appAuthConfig platformAuthConfig:(MIMIKAuthConfig * _Nonnull)platformAuthConfig viewController:(UIViewController * _Nullable)viewController;
+/// Deploys (installs) a microservice.
 /// warning:
 /// Repeat calls will overwrite previously deployed microservice of the same name. Connected websockets will be destroyed.
 /// note:
@@ -485,7 +523,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with a deployment state.
 ///
 - (void)deployMicroserviceWithConfig:(MIMIKMicroserviceDeploymentConfig * _Nonnull)config completion:(void (^ _Nonnull)(MIMIKDeploymentStateResult * _Nonnull))completion;
-/// Undeploys a microservice; platform access token is required.
+/// Undeploys (uninstalls) a microservice.
 /// important:
 /// Repeating calls will do nothing.
 /// warning:
@@ -552,21 +590,23 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// This method has to be called BEFORE calling startEdge (which initalizes mimik edge with the default configuration otherwise) or any other MIMIKEdgeMobileClient APIs.
 /// \param customConfiguration Custom configuration value.
 ///
-- (void)setCustomConfigurationWithConfiguration:(NSString * _Nonnull)configuration;
-/// This is for migrating a node id that was previously managed by an application manually.
-/// warning:
-/// This should be called before the first mimik edge initialization.
-/// note:
-/// Feel free to remove the self managed node id from your storage when you get a successful migration confirmation.
-/// \param nodeId Completion block returning an EdgeInfoResult object.
-///
-- (BOOL)setCustomManagedNodeIdWithNodeId:(NSString * _Nonnull)nodeId SWIFT_WARN_UNUSED_RESULT;
+- (void)setCustomConfigurationWithConfiguration:(NSString * _Nullable)configuration;
 /// Set the appropriate backend environment. Production is used if none is specified.
 /// note:
 /// This is for determining the configuration of authorization and profile calls..
 /// \param backend Backend environment.
 ///
 - (void)setBackendModeWithBackend:(enum MIMIKEdgeMobileClientBackend)backend;
+/// This is for migrating a node id that was previously managed by an application manually.
+/// warning:
+/// This should be called before the first mimik edge initialization.
+/// warning:
+/// This API will be removed in the near future, due to deprecation.
+/// note:
+/// Feel free to remove the self managed node id from your storage when you get a successful migration confirmation.
+/// \param nodeId Completion block returning an EdgeInfoResult object.
+///
+- (BOOL)setCustomManagedNodeIdWithNodeId:(NSString * _Nonnull)nodeId SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
@@ -583,6 +623,10 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
+
+
+
+
 
 
 
@@ -663,6 +707,23 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient15MIMIKEdgeStatus")
 @interface MIMIKEdgeStatus : NSObject
 @property (nonatomic) enum MIMIKEdgeState edgeState;
 @property (nonatomic) enum MIMIKStateChangingEvent stateChangingEvent;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Finance server request configuration object.
+/// <ul>
+///   <li>
+///     financeRootUrl: Custom profile  server URL.
+///   </li>
+/// </ul>
+SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient18MIMIKFinanceConfig")
+@interface MIMIKFinanceConfig : NSObject <NSCoding>
+- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
+- (nonnull instancetype)initWithFinanceRootUrl:(NSURL * _Nonnull)financeRootUrl OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, copy) NSURL * _Nonnull financeRootUrl;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -833,7 +894,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient18MIMIKProfileConfig")
 - (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
 - (nonnull instancetype)initWithProfileRootUrl:(NSURL * _Nonnull)profileRootUrl OBJC_DESIGNATED_INITIALIZER;
-@property (nonatomic, copy) NSURL * _Nullable profileRootUrl;
+@property (nonatomic, copy) NSURL * _Nonnull profileRootUrl;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
