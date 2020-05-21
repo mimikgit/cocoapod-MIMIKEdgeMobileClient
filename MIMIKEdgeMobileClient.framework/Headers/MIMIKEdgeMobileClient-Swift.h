@@ -610,8 +610,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 @end
 
 
-
-
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 @end
 
@@ -623,6 +621,12 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
+
+
+
+
+
+
 
 
 
