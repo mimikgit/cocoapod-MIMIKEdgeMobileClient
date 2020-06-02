@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/MIMIKEdgeMobileClient-Swift.h</key>
 		<data>
-		SJq/xRtAwCcNnVwQTdObsATk6ZM=
+		EjXAKwQFYLuxyQqkND+5TSUUjj0=
 		</data>
 		<key>Headers/MIMIKEdgeMobileClient.h</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		dp3T+q4J5msEBmEyr/EBAnqOEhI=
+		oj1s3VBDB5OWgZUn5cP5KfrES9c=
 		</data>
 		<key>MMKWebViewScriptSource.js</key>
 		<data>
@@ -26,27 +26,27 @@
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		bub9P8rXfaeGaO4cdnwcQtDSEVM=
+		YIaXwINOcsnGWfRr4rCmAGrhmWU=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<data>
-		bub9P8rXfaeGaO4cdnwcQtDSEVM=
+		YIaXwINOcsnGWfRr4rCmAGrhmWU=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		8SlGOwhhXmtMdwna30xYAklo24A=
+		0Jr7JW3w0qS19obolffvC3tlK/w=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		d6/dvz5Z3VrWPr7Nu1A8fBoVGHk=
+		CmXdd9oGTzQE/w613s0U5twwWqM=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		8SlGOwhhXmtMdwna30xYAklo24A=
+		0Jr7JW3w0qS19obolffvC3tlK/w=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		d6/dvz5Z3VrWPr7Nu1A8fBoVGHk=
+		CmXdd9oGTzQE/w613s0U5twwWqM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,7 +70,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cPNBVE8Bs1L4E3C97KdejFj3CTG+TFDa4RVAlk/XP5I=
+			FyJl1gUeSegp18pTSUCM1GRuZrV+hdXvtL+SR0b0DBw=
 			</data>
 		</dict>
 		<key>Headers/MIMIKEdgeMobileClient.h</key>
@@ -91,42 +91,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			F2NEP9IMH+dHuG7JuX9M+kXS7gBr4BqbnunwpZEcRmI=
+			QeONbYrVULBgv8lrwLeZZEHriuZJjpoCwRy4NhveIGc=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			F2NEP9IMH+dHuG7JuX9M+kXS7gBr4BqbnunwpZEcRmI=
+			QeONbYrVULBgv8lrwLeZZEHriuZJjpoCwRy4NhveIGc=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			n36KcfkF8plRHhXinhOApEwyP49WJIckWfVNz8vO/xo=
+			V3SZOGXWAHNlyoE5A00qEFFniT5cK92+6cZTs3yQalI=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2xRGoTKlOYLGRphWGV6z3cOF/IeqpYznYqDDnQOrskY=
+			g2kgmm1hxBM+jhw2rubqTCTX8X0e0rUrcQc8Dm80434=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			n36KcfkF8plRHhXinhOApEwyP49WJIckWfVNz8vO/xo=
+			V3SZOGXWAHNlyoE5A00qEFFniT5cK92+6cZTs3yQalI=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2xRGoTKlOYLGRphWGV6z3cOF/IeqpYznYqDDnQOrskY=
+			g2kgmm1hxBM+jhw2rubqTCTX8X0e0rUrcQc8Dm80434=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
