@@ -640,10 +640,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 
 
 
-
-
-
-
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 @end
 
@@ -655,6 +651,16 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -914,6 +920,23 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient35MIMIKMicroserviceUndeploymentConfig")
 @property (nonatomic, copy) NSString * _Nonnull edgeAccessToken;
 @property (nonatomic, copy) NSString * _Nonnull imageName;
 @property (nonatomic, copy) NSString * _Nonnull containerName;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Notification server request configuration object.
+/// <ul>
+///   <li>
+///     notificationRootUrl: Custom notification server URL.
+///   </li>
+/// </ul>
+SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient23MIMIKNotificationConfig")
+@interface MIMIKNotificationConfig : NSObject <NSCoding>
+- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
+- (nonnull instancetype)initWithNotificationRootUrl:(NSURL * _Nonnull)notificationRootUrl OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, copy) NSURL * _Nonnull notificationRootUrl;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
