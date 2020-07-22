@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MIMIKEdgeMobileClient"
-  s.version      = "4.2.0"
+  s.version      = "4.2.2"
   s.summary      = "Enable direct app to app communication."
 
   s.description  = <<-DESC
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 
   s.vendored_frameworks = "MIMIKEdgeMobileClient.framework", "edge.framework"
 
-  s.dependency 'Alamofire', '~> 5.2.1'
+  s.dependency 'Alamofire', '~> 5.2.2'
   s.dependency 'KeychainSwift', '~> 19.0.0'
   s.dependency 'Starscream', '~> 3.1.1'
   s.dependency 'SwiftyJSON', '~> 5.0.0'

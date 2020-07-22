@@ -485,7 +485,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with platform state.
 ///
 - (void)startEdgeWithCompletion:(void (^ _Nonnull)(MIMIKEdgeStateResult * _Nonnull))completion;
-/// Platform shitdown with a completion block.
+/// Platform shutdown with a completion block.
 /// important:
 /// Repeated calls are ignored, if the platform is already stopped.
 /// warning:
