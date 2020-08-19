@@ -18,7 +18,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		85LD39NPpiACMXAvOC5qavFQmks=
+		GmJxbpWwkwOs6N6QFORxkMpzT8E=
 		</data>
 		<key>MMKWebViewScriptSource.js</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		pSFAx7eyZ05WMTXIubMsPlJGp9c=
+		GyI7BRjPmvgyYF96dr1QnhfKrVA=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<data>
-		pSFAx7eyZ05WMTXIubMsPlJGp9c=
+		GyI7BRjPmvgyYF96dr1QnhfKrVA=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		3u8Q2oKgHaY1vM9E68a5q5Vfsmw=
+		t03F7LxmFcy9fndgoFkRv2Ue/QE=
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		3u8Q2oKgHaY1vM9E68a5q5Vfsmw=
+		t03F7LxmFcy9fndgoFkRv2Ue/QE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -91,14 +91,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Xd8OvHIf1FBUhZscr+n/j440Xyg2gZCt52LSVSNe8Pk=
+			FhXr0nl55ia6UuGx7qtmU0TJzMp/TcXNZ0vxMDzFo6s=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Xd8OvHIf1FBUhZscr+n/j440Xyg2gZCt52LSVSNe8Pk=
+			FhXr0nl55ia6UuGx7qtmU0TJzMp/TcXNZ0vxMDzFo6s=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -112,7 +112,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jScAaoSGYVcHVor7KGml5lunCwQrhiTDwTFSfjCpm1A=
+			jelj7iUk4es/sPFKv78zoHRCVQ2kHknh1i7AMsRBzLs=
 			</data>
 		</dict>
 		<key>Modules/MIMIKEdgeMobileClient.swiftmodule/arm64.swiftdoc</key>
@@ -126,7 +126,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jScAaoSGYVcHVor7KGml5lunCwQrhiTDwTFSfjCpm1A=
+			jelj7iUk4es/sPFKv78zoHRCVQ2kHknh1i7AMsRBzLs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
