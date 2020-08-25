@@ -541,6 +541,18 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with an authorization state.
 ///
 - (void)unauthorizeWithAuthConfig:(MIMIKAuthConfig * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
+/// Starts user authentication using a phone number with a completion block containing the authorization state.
+/// note:
+/// This is the FIRST step in the user authentication process.
+/// note:
+/// The user should expect to receive a binding code on the phone number specified, which then needs to be send back via the continueAuthorizationWith call.
+/// \param authConfig Configuration for the authentication session.
+///
+/// \param phoneNumber Phone number to send the binding code to.
+///
+/// \param completion Completion block with the new authorization state. Look for mfa_token and oob_code values in the state object.
+///
+- (void)authorizeWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig phoneNumber:(NSString * _Nonnull)phoneNumber completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
 /// Deploys (installs) a microservice.
 /// warning:
 /// Repeat calls will overwrite previously deployed microservice of the same name. Connected websockets will be destroyed.
@@ -644,8 +656,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 
 
 
-
-
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 @end
 
@@ -657,6 +667,10 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
+
+
+
+
 
 
 
