@@ -442,6 +442,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient19MIMIKEdgeInfoResult")
 @class MIMIKMicroserviceUndeploymentConfig;
 @class MIMIKGenericContentResult;
 enum MIMIKLogLevel : NSInteger;
+@class MIMIKStartupParameters;
 enum MIMIKEdgeMobileClientBackend : NSInteger;
 
 /// MIMIKEdgeMobileClient library can help you interact with the following mimik services:
@@ -633,6 +634,18 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param customConfiguration Custom configuration value.
 ///
 - (void)setCustomConfigurationWithConfiguration:(NSString * _Nullable)configuration;
+/// Specifies custom mimik edge startup parameters to be used during edgeSDK initialization.
+/// important:
+/// This method has to be called BEFORE calling startEdge.
+/// important:
+/// logLevel controls the level of console log output from edgeSDK.
+/// important:
+/// nodeInfoLevel controls the amount of node information visible to other nodes on the network.
+/// important:
+/// nodeName is the name visible to other nodes on the network.
+/// \param parameters Custom startup parameters object.
+///
+- (void)setCustomStartupParametersWithParameters:(MIMIKStartupParameters * _Nullable)parameters;
 /// Set the appropriate backend environment. Production is used if none is specified.
 /// note:
 /// This is for determining the configuration of authorization and profile calls..
@@ -650,8 +663,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 ///
 - (BOOL)setCustomManagedNodeIdWithNodeId:(NSString * _Nonnull)nodeId SWIFT_WARN_UNUSED_RESULT;
 @end
-
-
 
 
 
@@ -972,6 +983,16 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient18MIMIKProfileConfig")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
 - (nonnull instancetype)initWithProfileRootUrl:(NSURL * _Nonnull)profileRootUrl OBJC_DESIGNATED_INITIALIZER;
 @property (nonatomic, copy) NSURL * _Nonnull profileRootUrl;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient22MIMIKStartupParameters")
+@interface MIMIKStartupParameters : NSObject <NSCoding>
+@property (nonatomic, readonly, copy) NSString * _Nonnull description;
+- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end

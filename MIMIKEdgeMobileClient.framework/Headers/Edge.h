@@ -17,7 +17,9 @@
            nodeId:(NSString *)nodeId
          nodeName:(NSString *)name
     licenseString:(NSString *)license
- workingDirectory:(NSString *)workingDirectory;
+ workingDirectory:(NSString *)workingDirectory
+startupParameters:(NSDictionary *)startupParameters;
+
 - (void)stop;
 
 @end
