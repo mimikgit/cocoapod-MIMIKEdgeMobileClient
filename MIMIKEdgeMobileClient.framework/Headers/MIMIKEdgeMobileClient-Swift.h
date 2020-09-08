@@ -634,16 +634,16 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param customConfiguration Custom configuration value.
 ///
 - (void)setCustomConfigurationWithConfiguration:(NSString * _Nullable)configuration;
-/// Specifies custom mimik edge startup parameters to be used during edgeSDK initialization.
+/// Specifies custom mimik edgeEngine startup parameters to be used during edgeEngine initialization.
 /// important:
-/// This method has to be called BEFORE calling startEdge.
+/// This method has to be called BEFORE calling the startEdge API.
 /// important:
-/// logLevel controls the level of console log output from edgeSDK.
+/// logLevel controls the level of console log output from edgeEngine.
 /// important:
-/// nodeInfoLevel controls the amount of node information visible to other nodes on the network.
+/// nodeInfoLevel controls the level of node information visible to other nodes on the network.
 /// important:
 /// nodeName is the name visible to other nodes on the network.
-/// \param parameters Custom startup parameters object.
+/// \param parameters Configurable custom startup parameters object.
 ///
 - (void)setCustomStartupParametersWithParameters:(MIMIKStartupParameters * _Nullable)parameters;
 /// Set the appropriate backend environment. Production is used if none is specified.
