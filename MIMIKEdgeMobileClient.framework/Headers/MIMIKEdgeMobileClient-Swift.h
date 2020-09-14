@@ -443,7 +443,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient19MIMIKEdgeInfoResult")
 @class MIMIKGenericContentResult;
 enum MIMIKLogLevel : NSInteger;
 @class MIMIKStartupParameters;
-enum MIMIKEdgeMobileClientBackend : NSInteger;
 
 /// MIMIKEdgeMobileClient library can help you interact with the following mimik services:
 /// <ul>
@@ -554,6 +553,10 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with the new authorization state. Look for mfa_token and oob_code values in the state object.
 ///
 - (void)authorizeWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig phoneNumber:(NSString * _Nonnull)phoneNumber completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
+/// Supply a token for application backend calls.
+/// \param token Application backend access token.
+///
+- (void)useApplicationAccessTokenWithToken:(NSString * _Nonnull)token;
 /// Deploys (installs) a microservice.
 /// warning:
 /// Repeat calls will overwrite previously deployed microservice of the same name. Connected websockets will be destroyed.
@@ -646,12 +649,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param parameters Configurable custom startup parameters object.
 ///
 - (void)setCustomStartupParametersWithParameters:(MIMIKStartupParameters * _Nullable)parameters;
-/// Set the appropriate backend environment. Production is used if none is specified.
-/// note:
-/// This is for determining the configuration of authorization and profile calls..
-/// \param backend Backend environment.
-///
-- (void)setBackendModeWithBackend:(enum MIMIKEdgeMobileClientBackend)backend;
 /// This is for migrating a node id that was previously managed by an application manually.
 /// warning:
 /// This should be called before the first mimik edge initialization.
@@ -722,13 +719,6 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 
 
 
-
-typedef SWIFT_ENUM(NSInteger, MIMIKEdgeMobileClientBackend, closed) {
-  MIMIKEdgeMobileClientBackendDevelopment = 0,
-  MIMIKEdgeMobileClientBackendQa = 1,
-  MIMIKEdgeMobileClientBackendStaging = 2,
-  MIMIKEdgeMobileClientBackendProduction = 3,
-};
 
 @class MIMIKEdgeStatus;
 
