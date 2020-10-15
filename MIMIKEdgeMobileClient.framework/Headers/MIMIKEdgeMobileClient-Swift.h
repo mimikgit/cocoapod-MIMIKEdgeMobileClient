@@ -639,7 +639,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// </ul>
 /// \param level Desired log level.
 ///
-- (void)setLoggingLevelToLevel:(enum MIMIKLogLevel)level;
+- (void)setClientLibraryLogLevelTo:(enum MIMIKLogLevel)to;
 /// Specifies a custom mimik edge configuration to be used during initialization.
 /// important:
 /// This method has to be called BEFORE calling startEdge (which initalizes mimik edge with the default configuration otherwise) or any other MIMIKEdgeMobileClient APIs.
@@ -657,7 +657,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// nodeName is the name visible to other nodes on the network.
 /// \param parameters Configurable custom startup parameters object.
 ///
-- (void)setCustomStartupParametersWithParameters:(MIMIKStartupParameters * _Nullable)parameters;
+- (void)setEdgeEngineCustomStartupParametersWithParameters:(MIMIKStartupParameters * _Nullable)parameters;
 @end
 
 
@@ -829,7 +829,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient8MIMIKLog")
 /// Off level doesn’t output any messages.
 /// \param level Requested logging level.
 ///
-+ (void)setLoggingLevelToLevel:(enum MIMIKLogLevel)level subsystem:(enum MIMIKLogSubSystem)subsystem;
++ (void)setClientLibraryLogLevelInternalTo:(enum MIMIKLogLevel)to subsystem:(enum MIMIKLogSubSystem)subsystem;
 /// Logs a [mimik] tagged message to the console log and tags and assigns it to the selected category. Third party log messages are not tagged.
 /// remarks:
 /// Messages will be logged publicly by default. This means they will be visible in the device console. If you’d like to log messages privately (application debugger only) please use the API below (parameter displayPrivately: Bool).
@@ -886,7 +886,8 @@ typedef SWIFT_ENUM(NSInteger, MIMIKLogSubSystem, closed) {
   MIMIKLogSubSystemEdgeSDK_iOS_example = 3,
   MIMIKLogSubSystemEdgeSDK_iOS_access = 4,
   MIMIKLogSubSystemMimikEdgeMobileClient = 5,
-  MIMIKLogSubSystemThird_party = 47,
+  MIMIKLogSubSystemMimikEdgeMobileClientTracing = 6,
+  MIMIKLogSubSystemThird_party = 999,
 };
 
 
