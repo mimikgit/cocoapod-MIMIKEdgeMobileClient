@@ -858,14 +858,11 @@ typedef SWIFT_ENUM(NSInteger, MIMIKLogLevel, closed) {
 
 /// enum of potential logging levels.
 typedef SWIFT_ENUM(NSInteger, MIMIKLogSubSystem, closed) {
-  MIMIKLogSubSystemEdgeSDK_iOS = 0,
-  MIMIKLogSubSystemEdgeSDK_iOS_app_auth = 1,
-  MIMIKLogSubSystemEdgeSDK_iOS_app_ops = 2,
-  MIMIKLogSubSystemEdgeSDK_iOS_example = 3,
-  MIMIKLogSubSystemEdgeSDK_iOS_access = 4,
-  MIMIKLogSubSystemMimikEdgeMobileClient = 5,
-  MIMIKLogSubSystemMimikEdgeMobileClientTracing = 6,
-  MIMIKLogSubSystemThird_party = 999,
+  MIMIKLogSubSystemMimikEdgeMobileClient = 0,
+  MIMIKLogSubSystemMimikEdgeMobileClientTracing = 1,
+  MIMIKLogSubSystemThird_party_app = 100,
+  MIMIKLogSubSystemMimik_example_app = 101,
+  MIMIKLogSubSystemMimik_access_app = 102,
 };
 
 
