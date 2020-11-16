@@ -417,12 +417,12 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKDeploymentStatus")
 SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient13MIMIKEdgeInfo")
 @interface MIMIKEdgeInfo : NSObject
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;
-@property (nonatomic, readonly, copy) NSString * _Null_unspecified nodeId;
-@property (nonatomic, readonly, copy) NSString * _Null_unspecified nodeName;
-@property (nonatomic, readonly, copy) NSString * _Null_unspecified version;
-@property (nonatomic, readonly, copy) NSString * _Null_unspecified accountId;
-@property (nonatomic, readonly, copy) NSString * _Null_unspecified linkLocalIp;
-@property (nonatomic, readonly, copy) NSString * _Null_unspecified supernodeTypeName;
+@property (nonatomic, readonly, copy) NSString * _Nullable nodeId;
+@property (nonatomic, readonly, copy) NSString * _Nullable nodeName;
+@property (nonatomic, readonly, copy) NSString * _Nullable version;
+@property (nonatomic, readonly, copy) NSString * _Nullable accountId;
+@property (nonatomic, readonly, copy) NSString * _Nullable linkLocalIp;
+@property (nonatomic, readonly, copy) NSString * _Nullable supernodeTypeName;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -497,6 +497,10 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with platform state.
 ///
 - (void)stopEdgeWithCompletion:(void (^ _Nonnull)(MIMIKEdgeStateResult * _Nonnull))completion;
+/// Platform instance information in a completion block.
+/// \param completion Completion block with platform instance information.
+///
+- (void)edgeEngineInfo:(void (^ _Nonnull)(MIMIKEdgeInfo * _Nullable))completion;
 /// Starts a mimik platform authentication session in a view controller with a completion block containing the authorization state.
 /// note:
 /// What does mimik platform identity service mean to you as a developer? read below:
@@ -601,13 +605,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with an array objects representing the currently deployed containers.
 ///
 - (void)deployedMicroserviceContainersWithEdgeAccessToken:(NSString * _Nonnull)edgeAccessToken completion:(void (^ _Nonnull)(NSArray<MIMIKMicroserviceContainer *> * _Nullable))completion;
-/// Platform instance information.
-/// \param completion Completion block with platform instance information.
-///
-///
-/// returns:
-/// Platform instance information or nil if it doesn’t exist.
-- (void)getInfo:(void (^ _Nonnull)(MIMIKEdgeInfoResult * _Nonnull))completion;
 /// Platform instance service link, for your microservice configuration.
 ///
 /// returns:
@@ -663,6 +660,8 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 
 
 
+
+
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 @end
 
@@ -686,6 +685,10 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 
 
 
+
+@interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
+- (void)edgeEngineInfoInternal:(void (^ _Nonnull)(MIMIKEdgeInfo * _Nullable))completion;
+@end
 
 
 
