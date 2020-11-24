@@ -644,6 +644,16 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param customConfiguration Custom configuration value.
 ///
 - (void)setCustomConfigurationWithConfiguration:(NSString * _Nullable)configuration;
+/// Provides a way to set the custom port number for edgeEngine to operate one. This can only be set only once per application’s installation. Once set, the library locks to a specific port number and cannot be changed.
+/// Handle with care.
+/// note:
+/// Needs to be set before any other edgeEngine configuration settings or calls.
+/// \param number Requested edgeEngine port number.
+///
+///
+/// returns:
+/// Returns the result of the custom port number request. true if accepted, false if not accepted.
+- (BOOL)setCustomPortNumberWithNumber:(int32_t)number SWIFT_WARN_UNUSED_RESULT;
 /// Specifies custom mimik edgeEngine startup parameters to be used during edgeEngine initialization.
 /// important:
 /// This method has to be called BEFORE calling the startEdge API.
