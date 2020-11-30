@@ -371,6 +371,23 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient15MIMIKAuthTokens")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+
+/// MIMIK backend microservice configuration object.
+/// <ul>
+///   <li>
+///     backendMicroserviceRootUrl: microservice URL.
+///   </li>
+/// </ul>
+SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient30MIMIKBackendMicroserviceConfig")
+@interface MIMIKBackendMicroserviceConfig : NSObject <NSCoding>
+- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
+- (nonnull instancetype)initWithBackendMicroserviceRootUrl:(NSURL * _Nonnull)backendMicroserviceRootUrl OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, copy) NSURL * _Nonnull backendMicroserviceRootUrl;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
 /// enum of potential micro service deployment states.
 typedef SWIFT_ENUM(NSInteger, MIMIKDeploymentState, closed) {
   MIMIKDeploymentStateImageLoaded = 0,
@@ -692,11 +709,12 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 
 
 
+
+
+
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 - (void)edgeEngineInfoInternal:(void (^ _Nonnull)(MIMIKEdgeInfo * _Nullable))completion;
 @end
-
-
 
 
 
