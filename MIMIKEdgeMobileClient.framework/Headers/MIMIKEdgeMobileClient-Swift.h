@@ -210,23 +210,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 @class NSCoder;
 
-/// Assessment server request configuration object.
-/// <ul>
-///   <li>
-///     assessmentRootUrl: Custom profile  server URL.
-///   </li>
-/// </ul>
-SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKAssessmentConfig")
-@interface MIMIKAssessmentConfig : NSObject <NSCoding>
-- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
-- (nonnull instancetype)initWithAssessmentRootUrl:(NSURL * _Nonnull)assessmentRootUrl OBJC_DESIGNATED_INITIALIZER;
-@property (nonatomic, copy) NSURL * _Nonnull assessmentRootUrl;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-
 /// Platform authorization request configuration object.
 /// <ul>
 ///   <li>
@@ -708,12 +691,12 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 
 
 
+
+
+
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 - (void)edgeEngineInfoInternal:(void (^ _Nonnull)(MIMIKEdgeInfo * _Nullable))completion;
 @end
-
-
-
 
 
 
@@ -778,23 +761,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient15MIMIKEdgeStatus")
 @interface MIMIKEdgeStatus : NSObject
 @property (nonatomic) enum MIMIKEdgeState edgeState;
 @property (nonatomic) enum MIMIKStateChangingEvent stateChangingEvent;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-
-/// Finance server request configuration object.
-/// <ul>
-///   <li>
-///     financeRootUrl: Custom profile  server URL.
-///   </li>
-/// </ul>
-SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient18MIMIKFinanceConfig")
-@interface MIMIKFinanceConfig : NSObject <NSCoding>
-- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
-- (nonnull instancetype)initWithFinanceRootUrl:(NSURL * _Nonnull)financeRootUrl OBJC_DESIGNATED_INITIALIZER;
-@property (nonatomic, copy) NSURL * _Nonnull financeRootUrl;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -964,40 +930,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient35MIMIKMicroserviceUndeploymentConfig")
 @property (nonatomic, copy) NSString * _Nonnull edgeAccessToken;
 @property (nonatomic, copy) NSString * _Nonnull imageName;
 @property (nonatomic, copy) NSString * _Nonnull containerName;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-
-/// Notification server request configuration object.
-/// <ul>
-///   <li>
-///     notificationRootUrl: Custom notification server URL.
-///   </li>
-/// </ul>
-SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient23MIMIKNotificationConfig")
-@interface MIMIKNotificationConfig : NSObject <NSCoding>
-- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
-- (nonnull instancetype)initWithNotificationRootUrl:(NSURL * _Nonnull)notificationRootUrl OBJC_DESIGNATED_INITIALIZER;
-@property (nonatomic, copy) NSURL * _Nonnull notificationRootUrl;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-
-/// Profile server request configuration object.
-/// <ul>
-///   <li>
-///     profileRootUrl: Custom profile  server URL.
-///   </li>
-/// </ul>
-SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient18MIMIKProfileConfig")
-@interface MIMIKProfileConfig : NSObject <NSCoding>
-- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
-- (nonnull instancetype)initWithProfileRootUrl:(NSURL * _Nonnull)profileRootUrl OBJC_DESIGNATED_INITIALIZER;
-@property (nonatomic, copy) NSURL * _Nonnull profileRootUrl;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
