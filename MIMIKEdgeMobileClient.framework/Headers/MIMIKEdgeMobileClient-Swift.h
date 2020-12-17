@@ -857,6 +857,7 @@ typedef SWIFT_ENUM(NSInteger, MIMIKLogLevel, closed) {
 typedef SWIFT_ENUM(NSInteger, MIMIKLogSubSystem, closed) {
   MIMIKLogSubSystemMimikEdgeMobileClient = 0,
   MIMIKLogSubSystemMimikEdgeMobileClientTracing = 1,
+  MIMIKLogSubSystemMimikEdgeMobileClientAdapter = 2,
   MIMIKLogSubSystemThird_party_app = 100,
   MIMIKLogSubSystemMimik_example_app = 101,
   MIMIKLogSubSystemMimik_access_app = 102,
