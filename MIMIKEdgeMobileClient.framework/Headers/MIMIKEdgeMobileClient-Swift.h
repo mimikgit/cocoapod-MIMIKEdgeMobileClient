@@ -417,6 +417,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKDeploymentStatus")
 SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient13MIMIKEdgeInfo")
 @interface MIMIKEdgeInfo : NSObject
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;
+@property (nonatomic, readonly, copy) NSString * _Nonnull descriptionFormatted;
 @property (nonatomic, readonly, copy) NSString * _Nullable nodeId;
 @property (nonatomic, readonly, copy) NSString * _Nullable nodeName;
 @property (nonatomic, readonly, copy) NSString * _Nullable version;
@@ -697,6 +698,7 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 - (void)edgeEngineInfoInternal:(void (^ _Nonnull)(MIMIKEdgeInfo * _Nullable))completion;
 @end
+
 
 
 
