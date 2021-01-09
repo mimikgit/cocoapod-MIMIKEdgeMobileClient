@@ -437,7 +437,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient19MIMIKEdgeInfoResult")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-@class MIMIKEdgeStateResult;
 @class UIViewController;
 @class MIMIKMicroserviceUndeploymentConfig;
 @class MIMIKDeploymentStateResult;
@@ -480,7 +479,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 @interface MIMIKEdgeMobileClient : NSObject
 /// MIMIKEdgeMobileClient initializer. Keep a strong reference to it.
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-/// MIMIK edge Platform startup with a completion block.
+/// MIMIK edgeEngine platform startup with a completion block.
 /// important:
 /// Repeated calls are ignored, if the platform is already running.
 /// warning:
@@ -489,15 +488,13 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// It usually takes a few seconds for the completion block to be called.
 /// \param completion Completion block with platform state.
 ///
-- (void)startEdgeWithCompletion:(void (^ _Nonnull)(MIMIKEdgeStateResult * _Nonnull))completion;
-/// Platform shutdown with a completion block.
+- (void)startEdgeEngineWithCompletion:(void (^ _Nonnull)(BOOL))completion;
+/// MIMIK edgeEngine platform shutdown.
 /// important:
 /// Repeated calls are ignored, if the platform is already stopped.
 /// warning:
 /// It usually takes a few seconds for the completion block to be called.
-/// \param completion Completion block with platform state.
-///
-- (void)stopEdgeWithCompletion:(void (^ _Nonnull)(MIMIKEdgeStateResult * _Nonnull))completion;
+- (void)stopEdgeEngine:(void (^ _Nullable)(BOOL))completion;
 /// Platform instance information in a completion block.
 /// \param completion Completion block with platform instance information.
 ///
@@ -611,6 +608,11 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// returns:
 /// Platform instance service link.
 - (NSString * _Nullable)platformServiceLink SWIFT_WARN_UNUSED_RESULT;
+/// Platform working directory on the file system.
+///
+/// returns:
+/// Platform Platform working directory if it exists.
+- (NSString * _Nullable)platformWorkingDirectory SWIFT_WARN_UNUSED_RESULT;
 /// Platform instance websocket link, for your microservice configuration.
 ///
 /// returns:
@@ -673,6 +675,8 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 
 
 
+
+
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 @end
 
@@ -695,9 +699,6 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 
 
 
-@interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
-- (void)edgeEngineInfoInternal:(void (^ _Nonnull)(MIMIKEdgeInfo * _Nullable))completion;
-@end
 
 
 
@@ -712,10 +713,7 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 
 
 
-
-
-
-@class MIMIKEdgeStatus;
+enum MIMIKStateChangingEvent : NSInteger;
 
 /// MimikEdgeMobileClientProtocol protocol for edgeSDK lifecycle change callbacks
 /// note:
@@ -726,45 +724,7 @@ SWIFT_PROTOCOL("_TtP21MIMIKEdgeMobileClient29MIMIKEdgeMobileClientDelegate_")
 ///
 /// returns:
 /// MIMIKEdgeStatus object
-- (void)edgeStatusChangedWithStatus:(MIMIKEdgeStatus * _Nonnull)status;
-@end
-
-/// enum of potential edgeSDK states.
-typedef SWIFT_ENUM(NSInteger, MIMIKEdgeState, closed) {
-  MIMIKEdgeStateUnknown = 0,
-  MIMIKEdgeStateStarting = 1,
-  MIMIKEdgeStateRunning = 2,
-  MIMIKEdgeStateStopping = 3,
-  MIMIKEdgeStateStopped = 4,
-  MIMIKEdgeStateError = 5,
-};
-
-
-SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient20MIMIKEdgeStateResult")
-@interface MIMIKEdgeStateResult : NSObject
-@property (nonatomic, strong) MIMIKEdgeStatus * _Nullable status;
-@property (nonatomic) NSError * _Nullable error;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-enum MIMIKStateChangingEvent : NSInteger;
-
-/// edgeSDK status object used for MimikEdgeMobileClientProtocol delegate callbacks. Essentially it provides information about the current edgeSDK lifecycle state and the reason behind the lifecycle state change.
-/// <ul>
-///   <li>
-///     edgeState: Current edgeSDK state.
-///   </li>
-///   <li>
-///     stateChangingEvent: Reason behind the edgeSDK lifecycle change..
-///   </li>
-/// </ul>
-SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient15MIMIKEdgeStatus")
-@interface MIMIKEdgeStatus : NSObject
-@property (nonatomic) enum MIMIKEdgeState edgeState;
-@property (nonatomic) enum MIMIKStateChangingEvent stateChangingEvent;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (void)edgeEngineStateChangedWithEvent:(enum MIMIKStateChangingEvent)event;
 @end
 
 
@@ -949,15 +909,13 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient22MIMIKStartupParameters")
 
 /// enum of potential edgeSDK lifecycle changing events.
 typedef SWIFT_ENUM(NSInteger, MIMIKStateChangingEvent, closed) {
-  MIMIKStateChangingEventUIApplicationDidFinishLaunching = 0,
-  MIMIKStateChangingEventUIApplicationDidBecomeActive = 1,
-  MIMIKStateChangingEventUIApplicationWillEnterForeground = 2,
-  MIMIKStateChangingEventUIApplicationDidEnterBackground = 3,
-  MIMIKStateChangingEventUIApplicationWillTerminate = 4,
-  MIMIKStateChangingEventUIApplicationWillResignActive = 5,
-  MIMIKStateChangingEventStartupRequest = 6,
-  MIMIKStateChangingEventShutdownRequest = 7,
-  MIMIKStateChangingEventUnknown = 8,
+  MIMIKStateChangingEventUnknown = 0,
+  MIMIKStateChangingEventUIApplicationWillEnterForeground = 1,
+  MIMIKStateChangingEventUIApplicationDidEnterBackground = 2,
+  MIMIKStateChangingEventUIApplicationWillTerminate = 3,
+  MIMIKStateChangingEventUIApplicationWillResignActive = 4,
+  MIMIKStateChangingEventStartupRequest = 5,
+  MIMIKStateChangingEventShutdownRequest = 6,
 };
 
 #if __has_attribute(external_source_symbol)
