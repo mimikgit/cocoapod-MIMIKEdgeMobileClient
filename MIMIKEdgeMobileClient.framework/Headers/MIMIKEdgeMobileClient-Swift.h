@@ -416,14 +416,15 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKDeploymentStatus")
 /// </ul>
 SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient13MIMIKEdgeInfo")
 @interface MIMIKEdgeInfo : NSObject
-@property (nonatomic, readonly, copy) NSString * _Nonnull description;
-@property (nonatomic, readonly, copy) NSString * _Nonnull descriptionFormatted;
+@property (nonatomic, readonly, copy) NSString * _Nonnull mimikDescription;
+@property (nonatomic, readonly, copy) NSString * _Nonnull mimikDescriptionFormatted;
 @property (nonatomic, readonly, copy) NSString * _Nullable nodeId;
 @property (nonatomic, readonly, copy) NSString * _Nullable nodeName;
 @property (nonatomic, readonly, copy) NSString * _Nullable version;
 @property (nonatomic, readonly, copy) NSString * _Nullable accountId;
 @property (nonatomic, readonly, copy) NSString * _Nullable linkLocalIp;
 @property (nonatomic, readonly, copy) NSString * _Nullable supernodeTypeName;
+@property (nonatomic, readonly, copy) NSString * _Nullable port;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -560,11 +561,11 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// Supply a token for application backend calls.
 /// \param token Application backend access token.
 ///
-- (void)useApplicationAccessTokenWithToken:(NSString * _Nonnull)token;
-/// Supply a token for edgeEngine mcm operations.
-/// \param token edgeEngine mcm access token (edge access token).
+- (void)saveLibraryUserAccessTokenWithToken:(NSString * _Nonnull)token;
+/// Supply a token for edgeEngine microservice calls.
+/// \param token edgeEngine access token.
 ///
-- (void)useEdgeMCMAccessTokenWithToken:(NSString * _Nonnull)token;
+- (void)saveLibraryEdgeAccessTokenWithToken:(NSString * _Nonnull)token;
 /// Undeploys (removes) a microservice.
 /// important:
 /// Repeating calls will do nothing.
@@ -590,7 +591,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 ///
 /// \param completion Completion block with an array objects representing the currently deployed microservices.
 ///
-- (void)verifyDeployedMicroserviceMatchingImageId:(NSString * _Nullable)imageId edgeAccessToken:(NSString * _Nonnull)edgeAccessToken completion:(void (^ _Nonnull)(MIMIKMicroservice * _Nullable))completion;
+- (void)verifyDeployedMicroserviceMatchingImageId:(NSString * _Nonnull)imageId edgeAccessToken:(NSString * _Nonnull)edgeAccessToken completion:(void (^ _Nonnull)(MIMIKMicroservice * _Nullable))completion;
 /// List of currently deployed microservice images.
 /// \param edgeAccessToken edge engine access token to be used for this call.
 ///
@@ -688,6 +689,7 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
+
 
 
 

@@ -8,4 +8,9 @@ public:
         const std::string& workingPath,
         const std::map< std::string, std::string>& edgeEnv);
     static void stop();
+
+    static std::string getEdgeIdToken(int port, const std::string& nodeId,
+                       const std::string& nodeName, const std::string& license,
+                       const std::string& workingPath,
+                       const std::map<std::string, std::string>& optionMap);
 };

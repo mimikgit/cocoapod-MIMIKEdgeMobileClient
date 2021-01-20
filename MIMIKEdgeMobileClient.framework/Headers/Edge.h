@@ -20,6 +20,13 @@
  workingDirectory:(NSString *)workingDirectory
 startupParameters:(NSDictionary *)startupParameters;
 
+- (NSString *)edgeIdTokenWith:(int)port
+           nodeId:(NSString *)nodeId
+         nodeName:(NSString *)name
+    licenseString:(NSString *)license
+ workingDirectory:(NSString *)workingDirectory
+startupParameters:(NSDictionary *)startupParameters;
+
 - (void)stop;
 
 @end
