@@ -769,32 +769,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient8MIMIKLog")
 /// \param level Requested logging level.
 ///
 + (void)setClientLibraryLogLevelInternalTo:(enum MIMIKLogLevel)to subsystem:(enum MIMIKLogSubSystem)subsystem;
-/// Logs a [mimik] tagged message to the console log and tags and assigns it to the selected category. Third party log messages are not tagged.
-/// remarks:
-/// Messages will be logged publicly by default. This means they will be visible in the device console. If you’d like to log messages privately (application debugger only) please use the API below (parameter displayPrivately: Bool).
-/// \param message the actual message being logged.
-///
-/// \param type message category (debug, info, error, fault).
-///
-+ (void)logWithMessage:(NSString * _Nonnull)message type:(enum MIMIKLogLevel)type subsystem:(enum MIMIKLogSubSystem)subsystem;
-/// Logs a [mimik] tagged message to the console log and tags and assigns it to the selected category. Third party log messages are not tagged.
-/// \param message the actual message being logged.
-///
-/// \param type message category (debug, info, error, fault).
-///
-/// \param displayPrivately Messages will be logged publicly by default. This means they will be visible in the device console. If you’d like to log messages privately set this parameter to true.
-///
-+ (void)logWithMessage:(NSString * _Nonnull)message type:(enum MIMIKLogLevel)type subsystem:(enum MIMIKLogSubSystem)subsystem displayPrivately:(BOOL)displayPrivately;
-/// Logs a [mimik] tagged message to the console log and tags and assigns it to the selected category.
-/// remarks:
-/// Messages will be logged publicly by default. This means they will be visible in the device console. If you’d like to log messages privately (application debugger only) please use the API below (parameter displayPrivately: Bool).
-/// \param message the actual message being logged.
-///
-/// \param type message category (debug, info, error, fault).
-///
-/// \param value any string value not available during compilation time to be included at the end of the logged message.
-///
-+ (void)logWithMessage:(NSString * _Nonnull)message type:(enum MIMIKLogLevel)type value:(NSString * _Nonnull)value subsystem:(enum MIMIKLogSubSystem)subsystem;
 /// Logs a [mimik] tagged message to the console log and tags and assigns it to the selected category.
 /// \param message the actual message being logged.
 ///
@@ -804,7 +778,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient8MIMIKLog")
 ///
 /// \param displayPrivately Messages will be logged publicly by default. This means they will be visible in the device console. If you’d like to log messages privately set this parameter to true.
 ///
-+ (void)logWithMessage:(NSString * _Nonnull)message type:(enum MIMIKLogLevel)type value:(NSString * _Nonnull)value subsystem:(enum MIMIKLogSubSystem)subsystem displayPrivately:(BOOL)displayPrivately;
++ (void)logWithMessage:(NSString * _Nonnull)message type:(enum MIMIKLogLevel)type value:(NSString * _Nullable)value subsystem:(enum MIMIKLogSubSystem)subsystem displayPrivately:(BOOL)displayPrivately;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
