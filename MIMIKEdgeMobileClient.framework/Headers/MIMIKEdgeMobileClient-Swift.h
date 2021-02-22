@@ -459,16 +459,13 @@ enum MIMIKLogLevel : NSInteger;
 ///     profile
 ///   </li>
 ///   <li>
-///     finance
-///   </li>
-///   <li>
 ///     assessment
 ///   </li>
 ///   <li>
 ///     microservice deployment
 ///   </li>
 ///   <li>
-///     logs
+///     console logging
 ///   </li>
 ///   <li>
 ///     custom configuration
@@ -676,8 +673,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 
 
 
-
-
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 @end
 
@@ -689,7 +684,6 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
-
 
 
 
@@ -796,6 +790,7 @@ typedef SWIFT_ENUM(NSInteger, MIMIKLogSubSystem, closed) {
   MIMIKLogSubSystemMimikEdgeMobileClient = 0,
   MIMIKLogSubSystemMimikEdgeMobileClientTracing = 1,
   MIMIKLogSubSystemMimikEdgeMobileClientAdapter = 2,
+  MIMIKLogSubSystemMimikEdgeMobileClientFinance = 3,
   MIMIKLogSubSystemThird_party_app = 100,
   MIMIKLogSubSystemMimik_example_app = 101,
   MIMIKLogSubSystemMimik_access_app = 102,
