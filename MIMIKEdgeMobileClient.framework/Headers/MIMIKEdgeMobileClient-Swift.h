@@ -210,35 +210,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 @class NSCoder;
 
-/// Platform authorization request configuration object.
-/// <ul>
-///   <li>
-///     clientId: Client application identifier. Generated for the developer at the developer portal during application registration.
-///   </li>
-///   <li>
-///     redirectUrl: Client application redirect URL. Specified by the developer at the developer portal during application registration.
-///   </li>
-///   <li>
-///     additionalScopes: Optional additional scopes for the authorization request. A default set is included automatically.
-///   </li>
-///   <li>
-///     authorizationRootUrl: Optional custom authorization server URL. A default server is used if unspecified.
-///   </li>
-/// </ul>
-SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient15MIMIKAuthConfig")
-@interface MIMIKAuthConfig : NSObject <NSCoding>
-- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder;
-- (nonnull instancetype)initWithClientId:(NSString * _Nonnull)clientId redirectUrl:(NSURL * _Nonnull)redirectUrl additionalScopes:(NSArray<NSString *> * _Nullable)additionalScopes authorizationRootUrl:(NSURL * _Nullable)authorizationRootUrl OBJC_DESIGNATED_INITIALIZER;
-@property (nonatomic, copy) NSString * _Nonnull clientId;
-@property (nonatomic, copy) NSURL * _Nonnull redirectUrl;
-@property (nonatomic, copy) NSArray<NSString *> * _Nullable additionalScopes;
-@property (nonatomic, copy) NSURL * _Nullable authorizationRootUrl;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-
 /// Application authorization request configuration object.
 /// <ul>
 ///   <li>
@@ -520,7 +491,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 ///
 /// \param completion Completion block with an authorization state, including the platform access token.
 ///
-- (void)authorizePlatformWithAuthConfig:(MIMIKAuthConfig * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
+- (void)authorizePlatformWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
 /// Starts mimik platform authentication session in a view controller using an interactive session ticket with a completion block containing the authorization state.
 /// note:
 /// Read authorizePlatform call description for more information.
@@ -532,7 +503,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 ///
 /// \param completion Completion block with an authorization state, including the platform access token.
 ///
-- (void)authorizePlatformWithTicketWithAuthConfig:(MIMIKAuthConfig * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController ticket:(NSString * _Nonnull)ticket completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
+- (void)authorizePlatformWithTicketWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController ticket:(NSString * _Nonnull)ticket completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
 /// Starts mimik platform (un)authentication session in a view controller with a completion block containing the authorization state. Platform content will be erased.
 /// warning:
 /// Platform content will be erased.
@@ -542,7 +513,17 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 ///
 /// \param completion Completion block with an authorization state.
 ///
-- (void)unauthorizeWithAuthConfig:(MIMIKAuthConfig * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
+- (void)unauthorizeWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
+/// Starts mimik platform (un)authentication session in a view controller with a completion block containing the authorization state. Platform content will be erased.
+/// warning:
+/// Platform content will be erased.
+/// \param authConfig Configuration for the authentication session.
+///
+/// \param viewController View controller to be used to present the system provided authentication session controller.
+///
+/// \param completion Completion block with an authorization state.
+///
+- (void)unauthorizeTenantWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig completion:(void (^ _Nonnull)(BOOL))completion;
 /// Starts user authentication using a phone number with a completion block containing the authorization state.
 /// note:
 /// This is the FIRST step in the user authentication process.
@@ -554,7 +535,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 ///
 /// \param completion Completion block with the new authorization state. Look for mfa_token and oob_code values in the state object.
 ///
-- (void)authorizeWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig phoneNumber:(NSString * _Nonnull)phoneNumber completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
+- (void)authorizeWithPhoneWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig phoneNumber:(NSString * _Nonnull)phoneNumber associate:(BOOL)associate completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
 /// Supply a token for application backend calls.
 /// \param token Application backend access token.
 ///
@@ -684,7 +665,6 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
-
 
 
 
@@ -888,6 +868,12 @@ typedef SWIFT_ENUM(NSInteger, MIMIKStateChangingEvent, closed) {
   MIMIKStateChangingEventStartupRequest = 5,
   MIMIKStateChangingEventShutdownRequest = 6,
 };
+
+
+SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient8MMKTools")
+@interface MMKTools : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
 
 #if __has_attribute(external_source_symbol)
 # pragma clang attribute pop
