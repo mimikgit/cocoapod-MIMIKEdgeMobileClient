@@ -464,6 +464,12 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// warning:
 /// It usually takes a few seconds for the completion block to be called.
 - (void)stopEdgeEngine:(void (^ _Nullable)(BOOL))completion;
+/// MIMIK edgeEngine platform synchronous shutdown.
+/// important:
+/// Repeated calls are ignored, if the platform is already stopped.
+/// warning:
+/// It usually takes a few seconds for the main thread to become unblocked and the function to return.
+- (void)stopEdgeEngineSynchronously;
 /// Platform instance information in a completion block.
 /// \param completion Completion block with platform instance information.
 ///
@@ -492,18 +498,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with an authorization state, including the platform access token.
 ///
 - (void)authorizePlatformWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
-/// Starts mimik platform authentication session in a view controller using an interactive session ticket with a completion block containing the authorization state.
-/// note:
-/// Read authorizePlatform call description for more information.
-/// \param authConfig Configuration for the authentication session.
-///
-/// \param viewController View controller to be used to present the system provided authentication session controller.
-///
-/// \param ticket Interactive session ticket.
-///
-/// \param completion Completion block with an authorization state, including the platform access token.
-///
-- (void)authorizePlatformWithTicketWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController ticket:(NSString * _Nonnull)ticket completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
 /// Starts mimik platform (un)authentication session in a view controller with a completion block containing the authorization state. Platform content will be erased.
 /// warning:
 /// Platform content will be erased.
@@ -513,17 +507,15 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 ///
 /// \param completion Completion block with an authorization state.
 ///
-- (void)unauthorizeWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
-/// Starts mimik platform (un)authentication session in a view controller with a completion block containing the authorization state. Platform content will be erased.
+- (void)unauthorizePlatformWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
+/// Starts mimik platform un-authentication session with a completion block containing the authorization state. Platform content will be erased.
 /// warning:
 /// Platform content will be erased.
 /// \param authConfig Configuration for the authentication session.
 ///
-/// \param viewController View controller to be used to present the system provided authentication session controller.
-///
 /// \param completion Completion block with an authorization state.
 ///
-- (void)unauthorizeTenantWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig completion:(void (^ _Nonnull)(BOOL))completion;
+- (void)unauthorizeWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig completion:(void (^ _Nonnull)(BOOL))completion;
 /// Starts user authentication using a phone number with a completion block containing the authorization state.
 /// note:
 /// This is the FIRST step in the user authentication process.
@@ -652,8 +644,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 
 
 
-
-
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 @end
 
@@ -665,6 +655,9 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
+
+
+
 
 
 
