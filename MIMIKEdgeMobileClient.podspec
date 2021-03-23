@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MIMIKEdgeMobileClient"
-  s.version      = "6.2.1"
+  s.version      = "6.2.2"
   s.summary      = "Enable direct app to app communication."
 
   s.description  = <<-DESC
