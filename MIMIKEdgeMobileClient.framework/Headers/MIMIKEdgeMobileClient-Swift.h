@@ -644,6 +644,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 @end
 
 
+
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 @end
 
@@ -655,7 +656,6 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
-
 
 
 
@@ -863,6 +863,12 @@ typedef SWIFT_ENUM(NSInteger, MIMIKStateChangingEvent, closed) {
   MIMIKStateChangingEventStartupRequest = 5,
   MIMIKStateChangingEventShutdownRequest = 6,
 };
+
+
+SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient10MMKRequest")
+@interface MMKRequest : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
 
 
 SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient8MMKTools")
