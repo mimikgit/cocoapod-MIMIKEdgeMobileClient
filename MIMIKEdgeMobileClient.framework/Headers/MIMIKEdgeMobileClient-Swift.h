@@ -645,6 +645,10 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 
 
 
+
+
+
+
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 @end
 
@@ -656,9 +660,6 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
-
-
-
 
 
 
@@ -696,6 +697,18 @@ SWIFT_PROTOCOL("_TtP21MIMIKEdgeMobileClient29MIMIKEdgeMobileClientDelegate_")
 /// returns:
 /// MIMIKEdgeStatus object
 - (void)edgeEngineStateChangedWithEvent:(enum MIMIKStateChangingEvent)event;
+@end
+
+
+SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient11MIMIKFriend")
+@interface MIMIKFriend : NSObject
+@property (nonatomic, copy) NSString * _Nullable name;
+@property (nonatomic, copy) NSString * _Nullable email;
+@property (nonatomic, copy) NSString * _Nullable id;
+@property (nonatomic, copy) NSString * _Nullable accountId;
+@property (nonatomic, copy) NSString * _Nullable thumbnailURL;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
 
