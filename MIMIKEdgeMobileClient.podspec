@@ -1,7 +1,3 @@
-6.3.2
-edgeEngine based on v2.3.1-B01 tag.
-Xcode 12.5 compatible
-minimum deployment target iOS 13.6
 #
 #  Be sure to run `pod spec lint MIMIKEdgeMobileClient.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
