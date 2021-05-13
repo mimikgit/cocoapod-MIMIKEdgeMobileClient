@@ -1,3 +1,7 @@
+6.3.2
+edgeEngine based on v2.3.1-B01 tag.
+Xcode 12.5 compatible
+minimum deployment target iOS 13.6
 #
 #  Be sure to run `pod spec lint MIMIKEdgeMobileClient.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
@@ -9,7 +13,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MIMIKEdgeMobileClient"
-  s.version      = "6.3.1"
+  s.version      = "6.3.2"
   s.summary      = "Enable direct app to app communication."
 
   s.description  = <<-DESC
