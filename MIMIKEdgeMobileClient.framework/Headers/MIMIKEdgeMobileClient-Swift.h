@@ -617,10 +617,14 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param level Desired log level.
 ///
 - (void)setClientLibraryLogLevelTo:(enum MIMIKLogLevel)to;
-/// Specifies a custom mimik edge configuration to be used during initialization.
+/// Set your mimik edgeEngine custom configuration (license) to be used during library initialization. Each alternate backend uses a different configuration value.
 /// important:
-/// This method has to be called BEFORE calling startEdge (which initalizes mimik edge with the default configuration otherwise) or any other MIMIKEdgeMobileClient APIs.
-/// \param customConfiguration Custom configuration value.
+/// This method has to be called BEFORE startEdgeEngine or any other client library API is called (otherwise the client library will be initialized with the default mimik services specific edgeEngine configuration).
+/// warning:
+/// Switching between different configurations (licenses) for one application’s installation lifecycle is not supported and can lead to undefined behaviour.
+/// warning:
+/// Once you compile and deploy a project to a device, you should not change the configuration value again.
+/// \param customConfiguration Configuration (license) value.
 ///
 - (void)setCustomConfigurationWithConfiguration:(NSString * _Nullable)configuration;
 /// Provides a way to set the custom port number for edgeEngine to operate one. This can only be set only once per application’s installation. Once set, the library locks to a specific port number and cannot be changed.
