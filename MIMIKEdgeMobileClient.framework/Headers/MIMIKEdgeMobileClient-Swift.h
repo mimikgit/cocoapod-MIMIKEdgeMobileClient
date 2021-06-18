@@ -693,6 +693,7 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 
 
 
+
 enum MIMIKStateChangingEvent : NSInteger;
 
 /// MimikEdgeMobileClientProtocol protocol for edgeSDK lifecycle change callbacks

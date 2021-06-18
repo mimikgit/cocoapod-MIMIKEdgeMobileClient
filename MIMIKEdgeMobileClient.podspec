@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MIMIKEdgeMobileClient"
-  s.version      = "6.3.5"
+  s.version      = "6.3.6"
   s.summary      = "Enable direct app to app communication."
 
   s.description  = <<-DESC
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.dependency 'KeychainSwift', '~> 19.0.0'
   s.dependency 'SwiftyJSON', '~> 5.0.1'
   s.dependency 'AppAuth', '~> 1.4.0'
-  s.dependency 'JWTDecode', '~> 2.6.0'
+  s.dependency 'JWTDecode', '~> 2.6.1'
 
   s.platform = 'ios', '13.0'
   s.swift_version = '5.4'
