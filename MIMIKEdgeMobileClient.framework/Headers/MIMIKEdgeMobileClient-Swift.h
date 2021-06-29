@@ -414,7 +414,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient19MIMIKEdgeInfoResult")
 @end
 
 @class NSNumber;
-@class UIViewController;
 @class MIMIKMicroserviceUndeploymentConfig;
 @class MIMIKDeploymentStateResult;
 @class MIMIKMicroservice;
@@ -426,32 +425,40 @@ enum MIMIKLogLevel : NSInteger;
 /// MIMIKEdgeMobileClient library can help you interact with the following mimik services:
 /// <ul>
 ///   <li>
-///     edge cloud controls
+///     edgeEngine
 ///   </li>
 ///   <li>
-///     identity (platform and application)
+///     authentication
 ///   </li>
 ///   <li>
 ///     profile
 ///   </li>
 ///   <li>
+///     thumbnails
+///   </li>
+///   <li>
+///     notifications
+///   </li>
+///   <li>
 ///     assessment
 ///   </li>
 ///   <li>
+///     trackers
+///   </li>
+///   <li>
+///     friends
+///   </li>
+///   <li>
+///     content caching
+///   </li>
+///   <li>
 ///     microservice deployment
-///   </li>
-///   <li>
-///     console logging
-///   </li>
-///   <li>
-///     custom configuration
 ///   </li>
 ///   <li>
 ///   </li>
 /// </ul>
 SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 @interface MIMIKEdgeMobileClient : NSObject
-/// MIMIKEdgeMobileClient initializer. Keep a strong reference to it.
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 /// MIMIK edgeEngine platform startup with a completion block.
 /// important:
@@ -479,47 +486,14 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with platform instance information.
 ///
 - (void)edgeEngineInfo:(void (^ _Nonnull)(MIMIKEdgeInfo * _Nullable))completion;
-/// Starts a mimik platform authentication session in a view controller with a completion block containing the authorization state.
-/// note:
-/// What does mimik platform identity service mean to you as a developer? read below:
-/// <ul>
-///   <li>
-///     It activates the account clustering feature in mimik edge. All mimik edge enabled and authorized devices will automatically start discovering and organizing each other into account clusters, so that your application can start immediate direct cross platform and cross network data transfers between them using the built-in platform APIs.
-///   </li>
-///   <li>
-///     It is necessary for a secure deployment of edge microservices to your application, so that only authorized microservices can be deployed.
-///   </li>
-///   <li>
-///     It allows you to be platform ready when mimik identity service becomes one of the available options for web-based logins, so that your users can use it to login to other online services.
-///   </li>
-///   <li>
-///     This is the only mimik account your application’s users have to create
-///   </li>
-/// </ul>
-/// \param authConfig Configuration for the authentication session.
-///
-/// \param viewController View controller to be used to present the system provided authentication session controller.
-///
-/// \param completion Completion block with an authorization state, including the platform access token.
-///
-- (void)authorizePlatformWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
-/// Starts mimik platform (un)authentication session in a view controller with a completion block containing the authorization state. Platform content will be erased.
+/// Unauthorize edgeEngine and the client library.
 /// warning:
-/// Platform content will be erased.
-/// \param authConfig Configuration for the authentication session.
-///
-/// \param viewController View controller to be used to present the system provided authentication session controller.
-///
-/// \param completion Completion block with an authorization state.
-///
-- (void)unauthorizePlatformWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig viewController:(UIViewController * _Nonnull)viewController completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
-/// Starts mimik platform un-authentication session with a completion block containing the authorization state. Platform content will be erased.
-/// warning:
-/// Platform content will be erased.
+/// Stops edgeEngine and clears its working directory, essential making it a brand new edgeEngine installation. Also both the backend and edgeEngine access tokens used by the client library are erased.
 /// \param authConfig Configuration for the authentication session.
 ///
 /// \param completion Completion block with an authorization state.
 ///
+- (void)unauthorizeClientLibraryWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig completion:(void (^ _Nonnull)(BOOL))completion;
 - (void)unauthorizeWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig completion:(void (^ _Nonnull)(BOOL))completion;
 /// Starts user authentication using a phone number with a completion block containing the authorization state.
 /// note:
@@ -533,12 +507,12 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with the new authorization state. Look for mfa_token and oob_code values in the state object.
 ///
 - (void)authorizeWithPhoneWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig phoneNumber:(NSString * _Nonnull)phoneNumber associate:(BOOL)associate completion:(void (^ _Nonnull)(MIMIKAuthStateResult * _Nonnull))completion;
-/// Supply a token for application backend calls.
-/// \param token Application backend access token.
+/// Save an access token for backend microservice calls in the client library.
+/// \param token Access token to be used by the client for all backend microservice calls.
 ///
 - (void)saveLibraryUserAccessTokenWithToken:(NSString * _Nonnull)token;
-/// Supply a token for edgeEngine microservice calls.
-/// \param token edgeEngine access token.
+/// Save an access token for edgeEngine microservice calls in the client library.
+/// \param token Access token to be used by the client for all edgeEngine microservice calls.
 ///
 - (void)saveLibraryEdgeAccessTokenWithToken:(NSString * _Nonnull)token;
 /// Undeploys (removes) a microservice.
@@ -617,15 +591,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param level Desired log level.
 ///
 - (void)setClientLibraryLogLevelTo:(enum MIMIKLogLevel)to;
-/// Set your mimik edgeEngine custom configuration (license) to be used during library initialization. Each alternate backend uses a different configuration value.
-/// important:
-/// This method has to be called BEFORE startEdgeEngine or any other client library API is called (otherwise the client library will be initialized with the default mimik services specific edgeEngine configuration).
-/// warning:
-/// Switching between different configurations (licenses) for one application’s installation lifecycle is not supported and can lead to undefined behaviour.
-/// warning:
-/// Once you compile and deploy a project to a device, you should not change the configuration value again.
-/// \param customConfiguration Configuration (license) value.
-///
 - (void)setCustomConfigurationWithConfiguration:(NSString * _Nullable)configuration;
 /// Provides a way to set the custom port number for edgeEngine to operate one. This can only be set only once per application’s installation. Once set, the library locks to a specific port number and cannot be changed.
 /// Handle with care.
@@ -650,6 +615,8 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 ///
 - (void)setEdgeEngineCustomStartupParametersWithParameters:(MIMIKStartupParameters * _Nullable)parameters;
 @end
+
+
 
 
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
@@ -690,23 +657,6 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 
 
 
-
-
-
-
-enum MIMIKStateChangingEvent : NSInteger;
-
-/// MimikEdgeMobileClientProtocol protocol for edgeSDK lifecycle change callbacks
-/// note:
-/// See StateChangingEvent and EdgeState for details.
-SWIFT_PROTOCOL("_TtP21MIMIKEdgeMobileClient29MIMIKEdgeMobileClientDelegate_")
-@protocol MIMIKEdgeMobileClientDelegate
-/// edgeSDK lifecycle change callback to a registered MIMIKEdgeMobileClientDelegate protocol delegate.
-///
-/// returns:
-/// MIMIKEdgeStatus object
-- (void)edgeEngineStateChangedWithEvent:(enum MIMIKStateChangingEvent)event;
-@end
 
 
 SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient11MIMIKFriend")
