@@ -237,6 +237,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient18MIMIKAuthConfigApp")
 @property (nonatomic, copy) NSURL * _Nonnull redirectUrl;
 @property (nonatomic, copy) NSArray<NSString *> * _Nullable additionalScopes;
 @property (nonatomic, copy) NSURL * _Nonnull authorizationRootUrl;
+@property (nonatomic, readonly, copy) NSString * _Nonnull mimikDescription;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -247,6 +248,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient20MIMIKAuthStateResult")
 @interface MIMIKAuthStateResult : NSObject
 @property (nonatomic, strong) MIMIKAuthTokens * _Nullable tokens;
 @property (nonatomic) NSError * _Nullable error;
+@property (nonatomic, readonly, copy) NSString * _Nonnull mimikDescription;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -470,18 +472,15 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with platform state.
 ///
 - (void)startEdgeEngineWithCompletion:(void (^ _Nonnull)(BOOL))completion;
-/// MIMIK edgeEngine platform shutdown.
-/// important:
-/// Repeated calls are ignored, if the platform is already stopped.
-/// warning:
-/// It usually takes a few seconds for the completion block to be called.
-- (void)stopEdgeEngine:(void (^ _Nullable)(BOOL))completion;
 /// MIMIK edgeEngine platform synchronous shutdown.
 /// important:
-/// Repeated calls are ignored, if the platform is already stopped.
+/// Repeated calls are safely ignored.
 /// warning:
-/// It usually takes a few seconds for the main thread to become unblocked and the function to return.
+/// This is a main thread blocking call due to the nature of how the edgeEngine platform shuts down its dependencies.
+/// warning:
+/// It usually takes a second for this function to complete and unblock the main thread.
 - (void)stopEdgeEngineSynchronously;
+- (void)stopEdgeEngine:(void (^ _Nullable)(BOOL))completion;
 /// Platform instance information in a completion block.
 /// \param completion Completion block with platform instance information.
 ///
@@ -568,7 +567,11 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// returns:
 /// WebSocket service link.
 - (NSString * _Nullable)platformWebSocketServiceLink SWIFT_WARN_UNUSED_RESULT;
-/// Configures platform log output. Unified logging system is used and the messages are tagged with [mimik] [module-name] and then [info] [error] [fault] [debug].
+/// Controls the client library log output level. It does not control the edgeEngine platform console log output level.
+/// warning:
+/// This does not control the edgeEngine platform console log output level. For that please use setEdgeEngineStartupParameters.
+/// note:
+/// Unified logging system is used and the messages are tagged with [mimik] [module-name] and then [info] [error] [fault] [debug].
 /// note:
 ///
 /// <ul>
@@ -588,31 +591,31 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 ///     Off level doesn’t output any messages.
 ///   </li>
 /// </ul>
-/// \param level Desired log level.
+/// \param level The log level to be used for the client library message.
 ///
 - (void)setClientLibraryLogLevelTo:(enum MIMIKLogLevel)to;
 - (void)setCustomConfigurationWithConfiguration:(NSString * _Nullable)configuration;
-/// Provides a way to set the custom port number for edgeEngine to operate one. This can only be set only once per application’s installation. Once set, the library locks to a specific port number and cannot be changed.
-/// Handle with care.
+/// Provides a way to set a custom port number for the edgeEngine platform to work on. This can be set only once per application’s installation. Once set with this call, or automatically elsewhere, the client library locks to the port number and cannot be changed anymore.
 /// note:
 /// Needs to be set before any other edgeEngine configuration settings or calls.
 /// \param number Requested edgeEngine port number.
 ///
 ///
 /// returns:
-/// Returns the result of the custom port number request. true if accepted, false if not accepted.
+/// Returns a Bool representing the result of the custom port number request.
 - (BOOL)setCustomPortNumberWithNumber:(int32_t)number SWIFT_WARN_UNUSED_RESULT;
-/// Specifies custom mimik edgeEngine startup parameters to be used during edgeEngine initialization.
+/// Specifies mimik edgeEngine startup parameters to be used during edgeEngine initialization.
 /// important:
 /// This method has to be called BEFORE calling the startEdge API.
 /// important:
-/// logLevel controls the level of console log output from edgeEngine.
+/// optional logLevel controls the level of console log output from the edgeEngine platform.
 /// important:
-/// nodeInfoLevel controls the level of node information visible to other nodes on the network.
+/// optional nodeInfoLevel controls the level of node information visible to other nodes on the network.
 /// important:
-/// nodeName is the name visible to other nodes on the network.
-/// \param parameters Configurable custom startup parameters object.
+/// optional nodeName is the name visible to other nodes on the network.
+/// \param parameters An object representing the startup parameters.
 ///
+- (void)setEdgeEngineStartupParametersWithParameters:(MIMIKStartupParameters * _Nullable)parameters;
 - (void)setEdgeEngineCustomStartupParametersWithParameters:(MIMIKStartupParameters * _Nullable)parameters;
 @end
 
