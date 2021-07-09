@@ -462,36 +462,33 @@ enum MIMIKLogLevel : NSInteger;
 SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 @interface MIMIKEdgeMobileClient : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-/// MIMIK edgeEngine platform startup with a completion block.
+/// Asynchronous edgeEngine startup.
 /// important:
-/// Repeated calls are ignored, if the platform is already running.
-/// warning:
-/// Don’t forget to register a delegate to receive callbacks with platform lifecycle notifications.
-/// warning:
-/// It usually takes a few seconds for the completion block to be called.
-/// \param completion Completion block with platform state.
+/// Repeated calls are ignored and there is no change if edgeEngine is already running.
+/// \param completion Completion block with the startup result.
 ///
 - (void)startEdgeEngineWithCompletion:(void (^ _Nonnull)(BOOL))completion;
-/// MIMIK edgeEngine platform synchronous shutdown.
+/// Synchronous edgeEngine shutdown. Main thread blocking.
 /// important:
-/// Repeated calls are safely ignored.
+/// Repeated calls are ignored and there is no change if edgeEngine is already shut down.
+/// note:
+/// It can be assumed that edgeEngine is shut down as soon as this returns.
 /// warning:
-/// This is a main thread blocking call due to the nature of how the edgeEngine platform shuts down its dependencies.
+/// This is main thread blocking due to the nature of how edgeEngine shuts down its dependencies.
 /// warning:
-/// It usually takes a second for this function to complete and unblock the main thread.
+/// It usually takes a second or two for this to return and unblock the main thread.
 - (void)stopEdgeEngineSynchronously;
 - (void)stopEdgeEngine:(void (^ _Nullable)(BOOL))completion;
 /// Platform instance information in a completion block.
 /// \param completion Completion block with platform instance information.
 ///
 - (void)edgeEngineInfo:(void (^ _Nonnull)(MIMIKEdgeInfo * _Nullable))completion;
-/// Unauthorize edgeEngine and the client library.
+/// Unauthorize client library and synchronously shutdown edgeEngine with a working directory reset. Potentially main thread blocking.
 /// warning:
-/// Stops edgeEngine and clears its working directory, essential making it a brand new edgeEngine installation. Also both the backend and edgeEngine access tokens used by the client library are erased.
-/// \param authConfig Configuration for the authentication session.
+/// Stops edgeEngine and resets (removes and recreates) its working directory, essential making it a brand new edgeEngine installation.  Both the user access and edgeEngine access tokens stored by the client library are also erased.
+/// \param completion Completion block with a result Bool.
 ///
-/// \param completion Completion block with an authorization state.
-///
+- (BOOL)unauthorizeClientLibrarySynchronously SWIFT_WARN_UNUSED_RESULT;
 - (void)unauthorizeClientLibraryWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig completion:(void (^ _Nonnull)(BOOL))completion;
 - (void)unauthorizeWithAuthConfig:(MIMIKAuthConfigApp * _Nonnull)authConfig completion:(void (^ _Nonnull)(BOOL))completion;
 /// Starts user authentication using a phone number with a completion block containing the authorization state.
@@ -552,20 +549,37 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param completion Completion block with an array objects representing the currently deployed containers.
 ///
 - (void)deployedMicroserviceContainersWithEdgeAccessToken:(NSString * _Nonnull)edgeAccessToken completion:(void (^ _Nonnull)(NSArray<MIMIKMicroserviceContainer *> * _Nullable))completion;
-/// Platform instance service link, for your microservice configuration.
+/// Service link to the edgeEngine instance. For example when configuring microservices for deployment.
+/// note:
+/// Once the service link has been established, it will never change.
+/// note:
+/// For example http://127.0.0.1:[port-number]
+/// warning:
+/// The port number is randomly generated when queried the first time, then stored for subsequent restarts and can never change again.
 ///
 /// returns:
-/// Platform instance service link.
+/// Service link to the edgeEngine instance.
+- (NSString * _Nonnull)edgeEngineServiceLink SWIFT_WARN_UNUSED_RESULT;
 - (NSString * _Nullable)platformServiceLink SWIFT_WARN_UNUSED_RESULT;
-/// Platform working directory on the file system.
+/// Path to the edgeEngine working directory.
+/// note:
+/// Once the working directory has been established, it will never change.
 ///
 /// returns:
-/// Platform Platform working directory if it exists.
+/// Path to the edgeEngine working directory, if it has been established.
+- (NSString * _Nullable)edgeEngineWorkingDirectory SWIFT_WARN_UNUSED_RESULT;
 - (NSString * _Nullable)platformWorkingDirectory SWIFT_WARN_UNUSED_RESULT;
-/// Platform instance websocket link, for your microservice configuration.
+/// WebSocket service link to the edgeEngine instance. For example when configuring microservices for deployment.
+/// note:
+/// Once the websocket service link has been established, it will never change.
+/// note:
+/// For example ws://127.0.0.1:[port-number]
+/// warning:
+/// The port number is randomly generated when queried the first time, then stored for subsequent restarts and can never change again.
 ///
 /// returns:
-/// WebSocket service link.
+/// WebSocket service link to the edgeEngine instance.
+- (NSString * _Nonnull)edgeEngineWebSocketServiceLink SWIFT_WARN_UNUSED_RESULT;
 - (NSString * _Nullable)platformWebSocketServiceLink SWIFT_WARN_UNUSED_RESULT;
 /// Controls the client library log output level. It does not control the edgeEngine platform console log output level.
 /// warning:
