@@ -406,15 +406,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient13MIMIKEdgeInfo")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-
-SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient19MIMIKEdgeInfoResult")
-@interface MIMIKEdgeInfoResult : NSObject
-@property (nonatomic, strong) MIMIKEdgeInfo * _Nullable info;
-@property (nonatomic) NSError * _Nullable error;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
 @class NSNumber;
 @class MIMIKMicroserviceUndeploymentConfig;
 @class MIMIKDeploymentStateResult;
@@ -456,6 +447,10 @@ enum MIMIKLogLevel : NSInteger;
 ///   <li>
 ///     microservice deployment
 ///   </li>
+/// </ul>
+/// note:
+/// The client library will automatically restart edgeEngine during UIApplication.willEnterForegroundNotification ONLY when it was the client library that shut down a running edgeEngine during UIApplication.didEnterBackgroundNotification.
+/// <ul>
 ///   <li>
 ///   </li>
 /// </ul>
@@ -511,44 +506,44 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 /// \param token Access token to be used by the client for all edgeEngine microservice calls.
 ///
 - (void)saveLibraryEdgeAccessTokenWithToken:(NSString * _Nonnull)token;
-/// Undeploys (removes) a microservice.
+/// Undeploys (uninstalls) a microservice.
 /// important:
 /// Repeating calls will do nothing.
 /// warning:
 /// Microservice image will only be removed if it isn’t used by any containers.
-/// \param edgeAccessToken edgeEngine access token.
+/// \param edgeEngineAccessToken edgeEngine access token.
 ///
 /// \param config Undeployment configuration.
 ///
 /// \param completion Completion block with an undeployment state.
 ///
-- (void)undeployMicroserviceWithEdgeAccessToken:(NSString * _Nonnull)edgeAccessToken config:(MIMIKMicroserviceUndeploymentConfig * _Nonnull)config completion:(void (^ _Nonnull)(MIMIKDeploymentStateResult * _Nonnull))completion;
+- (void)undeployMicroserviceWithEdgeEngineAccessToken:(NSString * _Nonnull)edgeEngineAccessToken config:(MIMIKMicroserviceUndeploymentConfig * _Nonnull)config completion:(void (^ _Nonnull)(MIMIKDeploymentStateResult * _Nonnull))completion;
 /// List of currently deployed microservices.
-/// \param edgeAccessToken edge engine access token to be used for this call.
+/// \param edgeEngineAccessToken edgeEngine access token to be used for this call.
 ///
 /// \param completion Completion block with an array objects representing the currently deployed microservices.
 ///
-- (void)deployedMicroservicesWithEdgeAccessToken:(NSString * _Nonnull)edgeAccessToken completion:(void (^ _Nonnull)(NSArray<MIMIKMicroservice *> * _Nullable))completion;
+- (void)deployedMicroservicesWithEdgeEngineAccessToken:(NSString * _Nonnull)edgeEngineAccessToken completion:(void (^ _Nonnull)(NSArray<MIMIKMicroservice *> * _Nullable))completion;
 /// A currently deployed microservice matching an image id.
 /// \param imageId Microservice image id to be matched.
 ///
-/// \param edgeAccessToken edge engine access token to be used for this call.
+/// \param edgeEngineAccessToken edgeEngine access token to be used for this call.
 ///
 /// \param completion Completion block with an array objects representing the currently deployed microservices.
 ///
-- (void)verifyDeployedMicroserviceMatchingImageId:(NSString * _Nonnull)imageId edgeAccessToken:(NSString * _Nonnull)edgeAccessToken completion:(void (^ _Nonnull)(MIMIKMicroservice * _Nullable))completion;
+- (void)verifyDeployedMicroserviceMatchingImageId:(NSString * _Nonnull)imageId edgeEngineAccessToken:(NSString * _Nonnull)edgeEngineAccessToken completion:(void (^ _Nonnull)(MIMIKMicroservice * _Nullable))completion;
 /// List of currently deployed microservice images.
-/// \param edgeAccessToken edge engine access token to be used for this call.
+/// \param edgeEngineAccessToken edgeEngine access token to be used for this call.
 ///
 /// \param completion Completion block with an array objects representing the currently deployed images.
 ///
-- (void)deployedMicroserviceImagesWithEdgeAccessToken:(NSString * _Nonnull)edgeAccessToken completion:(void (^ _Nonnull)(NSArray<MIMIKMicroserviceImage *> * _Nullable))completion;
+- (void)deployedMicroserviceImagesWithEdgeEngineAccessToken:(NSString * _Nonnull)edgeEngineAccessToken completion:(void (^ _Nonnull)(NSArray<MIMIKMicroserviceImage *> * _Nullable))completion;
 /// List of currently deployed microservice containers.
-/// \param edgeAccessToken edge engine access token to be used for this call.
+/// \param edgeEngineAccessToken edgeEngine access token to be used for this call.
 ///
 /// \param completion Completion block with an array objects representing the currently deployed containers.
 ///
-- (void)deployedMicroserviceContainersWithEdgeAccessToken:(NSString * _Nonnull)edgeAccessToken completion:(void (^ _Nonnull)(NSArray<MIMIKMicroserviceContainer *> * _Nullable))completion;
+- (void)deployedMicroserviceContainersWithEdgeEngineAccessToken:(NSString * _Nonnull)edgeEngineAccessToken completion:(void (^ _Nonnull)(NSArray<MIMIKMicroserviceContainer *> * _Nullable))completion;
 /// Service link to the edgeEngine instance. For example when configuring microservices for deployment.
 /// note:
 /// Once the service link has been established, it will never change.
@@ -635,7 +630,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 
 
 
-
 @interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
 @end
 
@@ -647,6 +641,7 @@ SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymen
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
+
 
 
 
@@ -841,17 +836,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient22MIMIKStartupParameters")
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
-
-/// enum of potential edgeSDK lifecycle changing events.
-typedef SWIFT_ENUM(NSInteger, MIMIKStateChangingEvent, closed) {
-  MIMIKStateChangingEventUnknown = 0,
-  MIMIKStateChangingEventUIApplicationWillEnterForeground = 1,
-  MIMIKStateChangingEventUIApplicationDidEnterBackground = 2,
-  MIMIKStateChangingEventUIApplicationWillTerminate = 3,
-  MIMIKStateChangingEventUIApplicationWillResignActive = 4,
-  MIMIKStateChangingEventStartupRequest = 5,
-  MIMIKStateChangingEventShutdownRequest = 6,
-};
 
 
 SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient10MMKRequest")
