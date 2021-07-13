@@ -348,27 +348,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient30MIMIKBackendMicroserviceConfig")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-/// enum of potential micro service deployment states.
-typedef SWIFT_ENUM(NSInteger, MIMIKDeploymentState, closed) {
-  MIMIKDeploymentStateImageLoaded = 0,
-  MIMIKDeploymentStateContainerLoaded = 1,
-  MIMIKDeploymentStateUnloaded = 2,
-  MIMIKDeploymentStateError = 3,
-};
-
-
-/// micro service status object. Essentially it provides information about the status of a micro service deployment.
-/// <ul>
-///   <li>
-///     deploymentState: Current micro service deployment state.
-///   </li>
-/// </ul>
-SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKDeploymentStatus")
-@interface MIMIKDeploymentStatus : NSObject
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
 
 /// Provides edgeSDK instance specific MIMIKEdgeInfo object. Essentially provides a read only MIMIKEdgeInfo object with edgeSDK instance parameters (nodeId, nodeName, version, accountId) in a completion block.
 /// <ul>
@@ -408,7 +387,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient13MIMIKEdgeInfo")
 
 @class NSNumber;
 @class MIMIKMicroserviceUndeploymentConfig;
-@class MIMIKDeploymentStateResult;
 @class MIMIKMicroservice;
 @class MIMIKMicroserviceImage;
 @class MIMIKMicroserviceContainer;
@@ -517,7 +495,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 ///
 /// \param completion Completion block with an undeployment state.
 ///
-- (void)undeployMicroserviceWithEdgeEngineAccessToken:(NSString * _Nonnull)edgeEngineAccessToken config:(MIMIKMicroserviceUndeploymentConfig * _Nonnull)config completion:(void (^ _Nonnull)(MIMIKDeploymentStateResult * _Nonnull))completion;
+- (void)undeployMicroserviceWithEdgeEngineAccessToken:(NSString * _Nonnull)edgeEngineAccessToken config:(MIMIKMicroserviceUndeploymentConfig * _Nonnull)config completion:(void (^ _Nonnull)(BOOL))completion;
 /// List of currently deployed microservices.
 /// \param edgeEngineAccessToken edgeEngine access token to be used for this call.
 ///
@@ -628,19 +606,6 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient")
 - (void)setEdgeEngineCustomStartupParametersWithParameters:(MIMIKStartupParameters * _Nullable)parameters;
 @end
 
-
-
-@interface MIMIKEdgeMobileClient (SWIFT_EXTENSION(MIMIKEdgeMobileClient))
-@end
-
-
-SWIFT_CLASS("_TtCC21MIMIKEdgeMobileClient21MIMIKEdgeMobileClient26MIMIKDeploymentStateResult")
-@interface MIMIKDeploymentStateResult : NSObject
-@property (nonatomic, strong) MIMIKDeploymentStatus * _Nullable status;
-@property (nonatomic) NSError * _Nullable error;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
 
 
 
@@ -819,8 +784,7 @@ SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient22MIMIKMicroserviceImage")
 /// </ul>
 SWIFT_CLASS("_TtC21MIMIKEdgeMobileClient35MIMIKMicroserviceUndeploymentConfig")
 @interface MIMIKMicroserviceUndeploymentConfig : NSObject
-- (nonnull instancetype)initWithEdgeAccessToken:(NSString * _Nonnull)edgeAccessToken imageName:(NSString * _Nonnull)imageName containerName:(NSString * _Nonnull)containerName OBJC_DESIGNATED_INITIALIZER;
-@property (nonatomic, copy) NSString * _Nonnull edgeAccessToken;
+- (nonnull instancetype)initWithImageName:(NSString * _Nonnull)imageName containerName:(NSString * _Nonnull)containerName OBJC_DESIGNATED_INITIALIZER;
 @property (nonatomic, copy) NSString * _Nonnull imageName;
 @property (nonatomic, copy) NSString * _Nonnull containerName;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
